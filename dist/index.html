@@ -104,19 +104,19 @@
 
   <!-- Ambient Glow Backgrounds -->
   <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-    <div class="bg-orb-1 absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#007A87]/20 blur-[140px]"></div>
-    <div class="bg-orb-2 absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#FF6500]/15 blur-[150px]"></div>
+    <div class="bg-orb-1 absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-[#007A87]/20 blur-[150px]"></div>
+    <div class="bg-orb-2 absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full bg-[#FF6500]/15 blur-[160px]"></div>
     <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
   </div>
 
   <!-- Header / Navbar -->
-  <header class="relative z-20 mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-8">
+  <header class="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 sm:px-10 py-8">
     <!-- Official Logo Image & Vector Branding -->
     <a href="#" class="flex items-center gap-3">
       <img 
         src="https://anvtrust.org/wp-content/uploads/2021/02/logo.png" 
         alt="African National View Trust Logo" 
-        class="h-12 w-auto object-contain brightness-0 invert opacity-95"
+        class="h-12 sm:h-14 w-auto object-contain brightness-0 invert opacity-95"
         onerror="this.onerror=null; this.style.display='none'; document.getElementById('vector-logo').classList.remove('hidden');"
       >
       <!-- Fallback Vector Logo -->
@@ -142,8 +142,8 @@
     </div>
   </header>
 
-  <!-- Main Content (Sade & Şık Portal Tanıtımı) -->
-  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-2 my-auto">
+  <!-- Main Content (Genişletilmiş Genişlik Ve Dengeli Düzen) -->
+  <main class="relative z-20 mx-auto flex w-full max-w-5xl flex-col items-center justify-center text-center px-6 sm:px-10 py-2 my-auto">
     
     <!-- Status Badge -->
     <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-4">
@@ -152,12 +152,12 @@
     </div>
 
     <!-- Title -->
-    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-3 text-white max-w-2xl">
+    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-4 text-white max-w-3xl">
       ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>
     </h1>
 
-    <!-- AI Ring Loader Animation (Ferah Ve Geniş Alan) -->
-    <div class="my-8 sm:my-10 relative flex items-center justify-center select-none" style="width: 190px; height: 190px;">
+    <!-- AI Ring Loader Animation (Halka Görseli) -->
+    <div class="my-6 sm:my-8 relative flex items-center justify-center select-none" style="width: 200px; height: 200px;">
       <!-- Animated Text inside Loader Ring -->
       <div id="loader-letters" class="flex items-center justify-center space-x-[2px] z-10">
         <!-- Rendered via JS -->
@@ -166,37 +166,37 @@
       <div class="absolute inset-0 rounded-full animate-loaderCircle"></div>
     </div>
 
-    <!-- Portal Core Modules (Sadeleştirilmiş Vektör İkonlu Modüller) -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-8">
+    <!-- Portal Core Modules (Ekranın Genişliğine Yayılmış, Aşağıya Alınmış Şık Kartlar) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 w-full max-w-5xl mt-12 sm:mt-16">
       
       <!-- Arşiv Yönetimi -->
-      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <div class="flex items-center justify-center gap-4 p-5 rounded-2xl border border-slate-800/90 bg-slate-900/50 backdrop-blur-xl transition-all hover:border-[#007A87] hover:bg-slate-900/80 hover:-translate-y-1.5 shadow-xl hover:shadow-[#007A87]/15">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#007A87]/20 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
           </svg>
         </div>
-        <span id="f1-title" class="font-heading font-bold text-white text-sm sm:text-base">Arşiv Yönetimi</span>
+        <span id="f1-title" class="font-heading font-bold text-white text-base sm:text-lg">Arşiv Yönetimi</span>
       </div>
 
       <!-- Veri Yönetimi -->
-      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#FF6500]/70 hover:-translate-y-1 shadow-lg">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF6500]/15 text-[#FF6500] flex-shrink-0">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <div class="flex items-center justify-center gap-4 p-5 rounded-2xl border border-slate-800/90 bg-slate-900/50 backdrop-blur-xl transition-all hover:border-[#FF6500] hover:bg-slate-900/80 hover:-translate-y-1.5 shadow-xl hover:shadow-[#FF6500]/15">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FF6500]/20 text-[#FF6500] flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
         </div>
-        <span id="f2-title" class="font-heading font-bold text-white text-sm sm:text-base">Veri Yönetimi</span>
+        <span id="f2-title" class="font-heading font-bold text-white text-base sm:text-lg">Veri Yönetimi</span>
       </div>
 
       <!-- Güvenlik Yönetimi -->
-      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <div class="flex items-center justify-center gap-4 p-5 rounded-2xl border border-slate-800/90 bg-slate-900/50 backdrop-blur-xl transition-all hover:border-[#007A87] hover:bg-slate-900/80 hover:-translate-y-1.5 shadow-xl hover:shadow-[#007A87]/15">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#007A87]/20 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         </div>
-        <span id="f3-title" class="font-heading font-bold text-white text-sm sm:text-base">Güvenlik Yönetimi</span>
+        <span id="f3-title" class="font-heading font-bold text-white text-base sm:text-lg">Güvenlik Yönetimi</span>
       </div>
 
     </div>
