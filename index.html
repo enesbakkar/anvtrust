@@ -1,18 +1,545 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>African National View Trust – ANV Trust</title>
-    <meta name="description" content="African National View Trust (ANV Trust) - 1998'den beri Güney Afrika Johannesburg'da eğitim bursları, akademik danışmanlık ve insani yardım hizmetleri sunan vakıf." />
-    <!-- Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">ANV Trust Portal – Yakında Hizmetinizde</title>
+  <meta name="description" content="African National View Trust (ANV Trust) Dijital Portalı Çok Yakında Yayında.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #070a12;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Background Effects */
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+      bottom: -150px;
+      right: -100px;
+      animation-delay: -6s;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.1); }
+    }
+
+    /* Header & Nav */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 8%;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 22px;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .brand-name {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Language Switcher Switch */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      padding: 4px;
+      border-radius: 99px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      border-radius: 99px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse 1.6s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+    }
+
+    /* Hero Heading */
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.description {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      max-width: 680px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    /* Notification Form Box */
+    .notify-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      margin-bottom: 50px;
+      transition: border-color 0.3s;
+    }
+
+    .notify-card:focus-within {
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .notify-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .notify-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 14px 18px;
+      color: #fff;
+      font-family: var(--font-main);
+      font-size: 15px;
+      outline: none;
+    }
+
+    .notify-input::placeholder {
+      color: rgba(148, 163, 184, 0.6);
+    }
+
+    .notify-btn {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-family: var(--font-main);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+
+    .notify-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .notify-success {
+      display: none;
+      padding: 12px;
+      color: var(--accent-emerald);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Feature Teasers Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 10px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      border-radius: 20px;
+      text-align: left;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: rgba(148, 163, 184, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 24px 20px;
+      }
+      .notify-form {
+        flex-direction: column;
+      }
+      .notify-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient BG -->
+  <div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand">
+      <div class="logo-badge">A</div>
+      <div class="brand-name">
+        ANV TRUST
+        <span class="brand-sub">PORTAL</span>
+      </div>
+    </a>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-tr" onclick="setLanguage('tr')">TR</button>
+      <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Status Indicator -->
+    <div class="status-badge">
+      <span class="pulse-dot"></span>
+      <span id="txt-badge">PORTAL MODÜLLERİ YÜKLENİYOR</span>
+    </div>
+
+    <!-- Title -->
+    <h1 id="txt-title">
+      Geleceğin İnsani & Akademik Portalı <br><span class="gradient-text">Yakında Hizmetinizde</span>
+    </h1>
+
+    <!-- Description -->
+    <p class="description" id="txt-desc">
+      African National View Trust (ANV Trust) dijital portalı hazırlanıyor. Burs başvuruları, akademisyen paneli ve insani yardım süreçleri çok yakında tek bir platformda birleşiyor.
+    </p>
+
+    <!-- Email Notification Box -->
+    <div class="notify-card">
+      <form class="notify-form" id="notify-form" onsubmit="handleNotify(event)">
+        <input 
+          type="email" 
+          class="notify-input" 
+          id="email-input"
+          placeholder="E-posta adresinizi girin..." 
+          required
+        >
+        <button type="submit" class="notify-btn" id="btn-notify">Haberdar Et</button>
+      </form>
+      <div class="notify-success" id="notify-success"></div>
+    </div>
+
+    <!-- Feature Teasers -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <div class="feature-title" id="f1-title">Burs & Eğitim Portalı</div>
+        <div class="feature-desc" id="f1-desc">Online burs başvurusu ve takip süreçleri.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title" id="f2-title">İnsani Yardım Portalı</div>
+        <div class="feature-desc" id="f2-desc">Şeffaf ve hızlı yardım koordinasyon paneli.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title" id="f3-title">Akademik Panel</div>
+        <div class="feature-desc" id="f3-desc">Uluslararası danışmanlık ve ağ yönetimi.</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span id="txt-footer">&copy; 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır.</span>
+  </footer>
+
+  <!-- Script for Language Switch & Interactivity -->
+  <script>
+    const translations = {
+      tr: {
+        pageTitle: "ANV Trust Portal – Yakında Hizmetinizde",
+        badge: "PORTAL MODÜLLERİ YÜKLENİYOR",
+        title: 'Geleceğin İnsani & Akademik Portalı <br><span class="gradient-text">Yakında Hizmetinizde</span>',
+        desc: "African National View Trust (ANV Trust) dijital portalı hazırlanıyor. Burs başvuruları, akademisyen paneli ve insani yardım süreçleri çok yakında tek bir platformda birleşiyor.",
+        inputPlaceholder: "E-posta adresinizi girin...",
+        btnNotify: "Haberdar Et",
+        successMsg: "✨ Teşekkürler! Portal açıldığında size bildirim göndereceğiz.",
+        f1Title: "Burs & Eğitim Portalı",
+        f1Desc: "Online burs başvurusu ve takip süreçleri.",
+        f2Title: "İnsani Yardım Portalı",
+        f2Desc: "Şeffaf ve hızlı yardım koordinasyon paneli.",
+        f3Title: "Akademik Panel",
+        f3Desc: "Uluslararası danışmanlık ve ağ yönetimi.",
+        footer: "© 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır."
+      },
+      en: {
+        pageTitle: "ANV Trust Portal – Coming Soon",
+        badge: "PORTAL MODULES LOADING",
+        title: 'The Future of Academic & Humanitarian Portal <br><span class="gradient-text">Coming Soon</span>',
+        desc: "African National View Trust (ANV Trust) digital portal is under construction. Scholarship applications, academic panel, and aid coordination will soon be unified in one platform.",
+        inputPlaceholder: "Enter your email address...",
+        btnNotify: "Notify Me",
+        successMsg: "✨ Thank you! We will notify you as soon as the portal goes live.",
+        f1Title: "Scholarship & Education",
+        f1Desc: "Online application & student tracking portal.",
+        f2Title: "Humanitarian Aid Portal",
+        f2Desc: "Transparent and fast aid management.",
+        f3Title: "Academic Panel",
+        f3Desc: "International consulting and networking.",
+        footer: "© 2026 African National View Trust (ANV Trust). All rights reserved."
+      }
+    };
+
+    let currentLang = 'tr';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      document.getElementById('page-title').innerText = t.pageTitle;
+      document.getElementById('txt-badge').innerText = t.badge;
+      document.getElementById('txt-title').innerHTML = t.title;
+      document.getElementById('txt-desc').innerText = t.desc;
+      document.getElementById('email-input').placeholder = t.inputPlaceholder;
+      document.getElementById('btn-notify').innerText = t.btnNotify;
+      document.getElementById('f1-title').innerText = t.f1Title;
+      document.getElementById('f1-desc').innerText = t.f1Desc;
+      document.getElementById('f2-title').innerText = t.f2Title;
+      document.getElementById('f2-desc').innerText = t.f2Desc;
+      document.getElementById('f3-title').innerText = t.f3Title;
+      document.getElementById('f3-desc').innerText = t.f3Desc;
+      document.getElementById('txt-footer').innerText = t.footer;
+
+      document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
+    function handleNotify(event) {
+      event.preventDefault();
+      const form = document.getElementById('notify-form');
+      const success = document.getElementById('notify-success');
+      const t = translations[currentLang];
+      
+      form.style.display = 'none';
+      success.innerText = t.successMsg;
+      success.style.display = 'block';
+    }
+  </script>
+</body>
 </html>
