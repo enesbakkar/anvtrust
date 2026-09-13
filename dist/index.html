@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">ANV Trust Portal – Yakında Hizmetinizde</title>
+  <meta name="description" content="African National View Trust (ANV Trust) Dijital Portalı - Arşiv, Veri ve Güvenlik Yönetimi Sistemleri.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            anvTeal: '#007A87',
+            anvOrange: '#FF6500',
+            anvDark: '#070d14'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.05); }
+    }
+    .bg-orb-1 {
+      animation: pulseGlow 10s ease-in-out infinite alternate;
+    }
+    .bg-orb-2 {
+      animation: pulseGlow 14s ease-in-out infinite alternate;
+      animation-delay: -5s;
+    }
+
+    /* AI Circle Loader Keyframes & Shadow Glow */
+    @keyframes loaderCircle {
+      0% {
+        transform: rotate(90deg);
+        box-shadow:
+          0 6px 12px 0 #007A87 inset,
+          0 12px 18px 0 #FF6500 inset,
+          0 36px 36px 0 #005dff inset,
+          0 0 4px 1.5px rgba(0, 122, 135, 0.4),
+          0 0 8px 2.5px rgba(255, 101, 0, 0.35);
+      }
+      50% {
+        transform: rotate(270deg);
+        box-shadow:
+          0 6px 12px 0 #FF6500 inset,
+          0 12px 6px 0 #00a3b4 inset,
+          0 24px 36px 0 #007A87 inset,
+          0 0 4px 1.5px rgba(255, 101, 0, 0.4),
+          0 0 8px 2.5px rgba(0, 122, 135, 0.35);
+      }
+      100% {
+        transform: rotate(450deg);
+        box-shadow:
+          0 6px 12px 0 #007A87 inset,
+          0 12px 18px 0 #FF6500 inset,
+          0 36px 36px 0 #005dff inset,
+          0 0 4px 1.5px rgba(0, 122, 135, 0.4),
+          0 0 8px 2.5px rgba(255, 101, 0, 0.35);
+      }
+    }
+
+    @keyframes loaderLetter {
+      0%, 100% {
+        opacity: 0.4;
+        transform: translateY(0);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.18);
+      }
+      40% {
+        opacity: 0.7;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-loaderCircle {
+      animation: loaderCircle 5s linear infinite;
+    }
+
+    .animate-loaderLetter {
+      animation: loaderLetter 3s infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#070d14] text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative font-sans">
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div class="bg-orb-1 absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#007A87]/20 blur-[140px]"></div>
+    <div class="bg-orb-2 absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#FF6500]/15 blur-[150px]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="relative z-20 mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-8">
+    <!-- Official Logo Image & Vector Branding -->
+    <a href="#" class="flex items-center gap-3">
+      <img 
+        src="https://anvtrust.org/wp-content/uploads/2021/02/logo.png" 
+        alt="African National View Trust Logo" 
+        class="h-12 w-auto object-contain brightness-0 invert opacity-95"
+        onerror="this.onerror=null; this.style.display='none'; document.getElementById('vector-logo').classList.remove('hidden');"
+      >
+      <!-- Fallback Vector Logo -->
+      <div id="vector-logo" class="hidden flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#007A87] to-[#FF6500] font-black text-white text-lg shadow-lg shadow-[#007A87]/30">
+          ANV
+        </div>
+        <div class="flex flex-col text-left">
+          <span class="font-extrabold tracking-tight text-white text-base leading-tight font-heading">AFRICAN NATIONAL VIEW</span>
+          <span class="text-[10px] font-bold tracking-[0.2em] text-[#FF6500] uppercase">TRUST PORTAL</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- TR / EN Language Switcher -->
+    <div class="flex items-center rounded-full border border-white/10 bg-slate-900/80 p-1 backdrop-blur-md shadow-xl">
+      <button id="btn-tr" onclick="setLanguage('tr')" class="rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#007A87] to-[#00a3b4] text-white shadow-md">
+        TR
+      </button>
+      <button id="btn-en" onclick="setLanguage('en')" class="rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white">
+        EN
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content (Sade & Şık Portal Tanıtımı) -->
+  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-2 my-auto">
+    
+    <!-- Status Badge -->
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-4">
+      <span class="h-2 w-2 rounded-full bg-[#FF6500] animate-ping"></span>
+      <span id="txt-badge">PORTAL MODÜLLERİ YÜKLENİYOR</span>
+    </div>
+
+    <!-- Title -->
+    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-3 text-white max-w-2xl">
+      ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>
+    </h1>
+
+    <!-- AI Ring Loader Animation (Ferah Ve Geniş Alan) -->
+    <div class="my-8 sm:my-10 relative flex items-center justify-center select-none" style="width: 190px; height: 190px;">
+      <!-- Animated Text inside Loader Ring -->
+      <div id="loader-letters" class="flex items-center justify-center space-x-[2px] z-10">
+        <!-- Rendered via JS -->
+      </div>
+      <!-- Glowing Rotating Circle -->
+      <div class="absolute inset-0 rounded-full animate-loaderCircle"></div>
+    </div>
+
+    <!-- Portal Core Modules (Sadeleştirilmiş Vektör İkonlu Modüller) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-8">
+      
+      <!-- Arşiv Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+          </svg>
+        </div>
+        <span id="f1-title" class="font-heading font-bold text-white text-sm sm:text-base">Arşiv Yönetimi</span>
+      </div>
+
+      <!-- Veri Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#FF6500]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF6500]/15 text-[#FF6500] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <span id="f2-title" class="font-heading font-bold text-white text-sm sm:text-base">Veri Yönetimi</span>
+      </div>
+
+      <!-- Güvenlik Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <span id="f3-title" class="font-heading font-bold text-white text-sm sm:text-base">Güvenlik Yönetimi</span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Sparkles Particle Bottom Glow -->
+  <div class="relative -mt-6 h-36 w-full overflow-hidden [mask-image:radial-gradient(50%_50%,black,transparent)] pointer-events-none">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(255,101,0,0.2),transparent_70%)] opacity-70"></div>
+    <canvas id="sparkle-canvas" class="pointer-events-none absolute inset-0 w-full h-full"></canvas>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-20 text-center text-xs text-slate-500 py-6 border-t border-white/5">
+    <span id="txt-footer">&copy; 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır.</span>
+  </footer>
+
+  <!-- Script for Language Switch, Loader Letters & Sparkles -->
+  <script>
+    const translations = {
+      tr: {
+        pageTitle: "ANV Trust Portal – Yakında Hizmetinizde",
+        badge: "PORTAL MODÜLLERİ YÜKLENİYOR",
+        title: 'ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>',
+        loaderText: "YÜKLENİYOR",
+        f1Title: "Arşiv Yönetimi",
+        f2Title: "Veri Yönetimi",
+        f3Title: "Güvenlik Yönetimi",
+        footer: "© 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır."
+      },
+      en: {
+        pageTitle: "ANV Trust Portal – Coming Soon",
+        badge: "PORTAL MODULES LOADING",
+        title: 'ANV Trust Digital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Coming Soon</span>',
+        loaderText: "LOADING...",
+        f1Title: "Archive Management",
+        f2Title: "Data Management",
+        f3Title: "Security Administration",
+        footer: "© 2026 African National View Trust (ANV Trust). All rights reserved."
+      }
+    };
+
+    let currentLang = 'tr';
+
+    function renderLoaderLetters(text) {
+      const container = document.getElementById('loader-letters');
+      if (!container) return;
+      container.innerHTML = '';
+      text.split('').forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.className = 'inline-block text-white font-extrabold text-xs sm:text-sm opacity-40 animate-loaderLetter tracking-widest uppercase';
+        span.style.animationDelay = `${i * 0.1}s`;
+        span.innerText = letter;
+        container.appendChild(span);
+      });
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      document.getElementById('page-title').innerText = t.pageTitle;
+      document.getElementById('txt-badge').innerText = t.badge;
+      document.getElementById('txt-title').innerHTML = t.title;
+      renderLoaderLetters(t.loaderText);
+
+      document.getElementById('f1-title').innerText = t.f1Title;
+      document.getElementById('f2-title').innerText = t.f2Title;
+      document.getElementById('f3-title').innerText = t.f3Title;
+      document.getElementById('txt-footer').innerText = t.footer;
+
+      const btnTr = document.getElementById('btn-tr');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'tr') {
+        btnTr.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#007A87] to-[#00a3b4] text-white shadow-md";
+        btnEn.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white";
+      } else {
+        btnEn.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#FF6500] to-[#ff8533] text-white shadow-md";
+        btnTr.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white";
+      }
+    }
+
+    // Initial Render
+    renderLoaderLetters(translations.tr.loaderText);
+
+    // Sparkles Particles Canvas
+    (function initSparkles() {
+      const canvas = document.getElementById('sparkle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.parentElement.offsetWidth || 800;
+      let height = canvas.height = canvas.parentElement.offsetHeight || 150;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth || 800;
+        height = canvas.height = canvas.parentElement.offsetHeight || 150;
+      });
+
+      const count = 35;
+      const particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 1.8 + 0.5,
+        alpha: Math.random(),
+        speed: Math.random() * 0.015 + 0.005,
+        dir: Math.random() > 0.5 ? 1 : -1,
+        color: Math.random() > 0.4 ? '#007A87' : '#FF6500'
+      }));
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.alpha += p.speed * p.dir;
+          if (p.alpha >= 1) { p.alpha = 1; p.dir = -1; }
+          else if (p.alpha <= 0.1) { p.alpha = 0.1; p.dir = 1; }
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+          ctx.restore();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>
