@@ -1,5 +1,5 @@
-import ComingSoon02 from "@/components/ui/coming-soon-02";
+import { Component } from "@/components/ui/ai-loader";
 
-export default function ComingSoon02Demo() {
-  return <ComingSoon02 />;
+export default function DemoOne() {
+  return <Component />;
 }

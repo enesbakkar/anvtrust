@@ -44,6 +44,60 @@
       animation: pulseGlow 14s ease-in-out infinite alternate;
       animation-delay: -5s;
     }
+
+    /* AI Circle Loader Keyframes & Shadow Glow */
+    @keyframes loaderCircle {
+      0% {
+        transform: rotate(90deg);
+        box-shadow:
+          0 6px 12px 0 #007A87 inset,
+          0 12px 18px 0 #FF6500 inset,
+          0 36px 36px 0 #005dff inset,
+          0 0 4px 1.5px rgba(0, 122, 135, 0.4),
+          0 0 8px 2.5px rgba(255, 101, 0, 0.35);
+      }
+      50% {
+        transform: rotate(270deg);
+        box-shadow:
+          0 6px 12px 0 #FF6500 inset,
+          0 12px 6px 0 #00a3b4 inset,
+          0 24px 36px 0 #007A87 inset,
+          0 0 4px 1.5px rgba(255, 101, 0, 0.4),
+          0 0 8px 2.5px rgba(0, 122, 135, 0.35);
+      }
+      100% {
+        transform: rotate(450deg);
+        box-shadow:
+          0 6px 12px 0 #007A87 inset,
+          0 12px 18px 0 #FF6500 inset,
+          0 36px 36px 0 #005dff inset,
+          0 0 4px 1.5px rgba(0, 122, 135, 0.4),
+          0 0 8px 2.5px rgba(255, 101, 0, 0.35);
+      }
+    }
+
+    @keyframes loaderLetter {
+      0%, 100% {
+        opacity: 0.4;
+        transform: translateY(0);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.18);
+      }
+      40% {
+        opacity: 0.7;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-loaderCircle {
+      animation: loaderCircle 5s linear infinite;
+    }
+
+    .animate-loaderLetter {
+      animation: loaderLetter 3s infinite;
+    }
   </style>
 </head>
 <body class="bg-[#070d14] text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative font-sans">
@@ -89,47 +143,36 @@
   </header>
 
   <!-- Main Content (Sade & Şık Portal Tanıtımı) -->
-  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-6 my-auto">
+  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-4 my-auto">
     
     <!-- Status Badge -->
-    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-6">
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-5">
       <span class="h-2 w-2 rounded-full bg-[#FF6500] animate-ping"></span>
       <span id="txt-badge">PORTAL MODÜLLERİ YÜKLENİYOR</span>
     </div>
 
     <!-- Title -->
-    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-6 text-white max-w-2xl">
+    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-4 text-white max-w-2xl">
       ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>
     </h1>
 
     <!-- Description -->
-    <p id="txt-desc" class="max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
+    <p id="txt-desc" class="max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
       Arşiv Yönetimi, Veri Yönetimi ve Güvenlik Yönetimi altyapılarını içeren yeni ANV Trust Dijital Portalı hazırlık aşamasında. Çok yakında hizmetinizde.
     </p>
 
-    <!-- Email Notification Box -->
-    <div class="w-full max-w-md bg-slate-900/80 border border-white/10 backdrop-blur-xl p-2 rounded-2xl shadow-2xl mb-10 transition-all focus-within:border-[#FF6500]/50">
-      <form id="notify-form" onsubmit="handleNotify(event)" class="flex gap-2">
-        <input 
-          type="email" 
-          id="email-input"
-          required 
-          placeholder="E-posta adresinizi girin..." 
-          class="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder-slate-500 outline-none"
-        >
-        <button 
-          type="submit" 
-          id="btn-notify"
-          class="rounded-xl bg-gradient-to-r from-[#FF6500] to-[#ff8533] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#FF6500]/30 transition-all hover:brightness-110 active:scale-95 whitespace-nowrap"
-        >
-          Haberdar Et
-        </button>
-      </form>
-      <div id="notify-success" class="hidden p-3 text-sm font-semibold text-emerald-400 text-center"></div>
+    <!-- AI Ring Loader Animation (E-posta Yerine Eklendi) -->
+    <div class="my-6 relative flex items-center justify-center select-none" style="width: 170px; height: 170px;">
+      <!-- Animated Text inside Loader Ring -->
+      <div id="loader-letters" class="flex items-center justify-center space-x-[2px] z-10">
+        <!-- Rendered via JS -->
+      </div>
+      <!-- Glowing Rotating Circle -->
+      <div class="absolute inset-0 rounded-full animate-loaderCircle"></div>
     </div>
 
     <!-- Portal Core Modules (Sade 3 Sistem Kartı) -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-4">
       <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md text-left transition-all hover:border-[#007A87]/60 hover:-translate-y-1">
         <span class="text-2xl mb-2">📁</span>
         <span id="f1-title" class="font-heading font-bold text-white text-base mb-1">Arşiv Yönetimi</span>
@@ -162,7 +205,7 @@
     <span id="txt-footer">&copy; 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır.</span>
   </footer>
 
-  <!-- Script for Language Switch & Sparkles Canvas -->
+  <!-- Script for Language Switch, Loader Letters & Sparkles -->
   <script>
     const translations = {
       tr: {
@@ -170,9 +213,7 @@
         badge: "PORTAL MODÜLLERİ YÜKLENİYOR",
         title: 'ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>',
         desc: "Arşiv Yönetimi, Veri Yönetimi ve Güvenlik Yönetimi altyapılarını içeren yeni ANV Trust Dijital Portalı hazırlık aşamasında. Çok yakında hizmetinizde.",
-        inputPlaceholder: "E-posta adresinizi girin...",
-        btnNotify: "Haberdar Et",
-        successMsg: "✨ Teşekkürler! Portal açıldığında size bildirim göndereceğiz.",
+        loaderText: "YÜKLENİYOR",
         f1Title: "Arşiv Yönetimi",
         f1Desc: "Dijital doküman ve arşivleme altyapısı.",
         f2Title: "Veri Yönetimi",
@@ -186,9 +227,7 @@
         badge: "PORTAL MODULES LOADING",
         title: 'ANV Trust Digital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Coming Soon</span>',
         desc: "ANV Trust Digital Portal featuring Archive Management, Data Management, and Security Administration is under construction. Coming soon.",
-        inputPlaceholder: "Enter your email address...",
-        btnNotify: "Notify Me",
-        successMsg: "✨ Thank you! We will notify you as soon as the portal launches.",
+        loaderText: "LOADING...",
         f1Title: "Archive Management",
         f1Desc: "Digital document and archiving infrastructure.",
         f2Title: "Data Management",
@@ -201,6 +240,19 @@
 
     let currentLang = 'tr';
 
+    function renderLoaderLetters(text) {
+      const container = document.getElementById('loader-letters');
+      if (!container) return;
+      container.innerHTML = '';
+      text.split('').forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.className = 'inline-block text-white font-extrabold text-xs sm:text-sm opacity-40 animate-loaderLetter tracking-widest uppercase';
+        span.style.animationDelay = `${i * 0.1}s`;
+        span.innerText = letter;
+        container.appendChild(span);
+      });
+    }
+
     function setLanguage(lang) {
       currentLang = lang;
       const t = translations[lang];
@@ -209,8 +261,8 @@
       document.getElementById('txt-badge').innerText = t.badge;
       document.getElementById('txt-title').innerHTML = t.title;
       document.getElementById('txt-desc').innerText = t.desc;
-      document.getElementById('email-input').placeholder = t.inputPlaceholder;
-      document.getElementById('btn-notify').innerText = t.btnNotify;
+      renderLoaderLetters(t.loaderText);
+
       document.getElementById('f1-title').innerText = t.f1Title;
       document.getElementById('f1-desc').innerText = t.f1Desc;
       document.getElementById('f2-title').innerText = t.f2Title;
@@ -231,16 +283,8 @@
       }
     }
 
-    function handleNotify(e) {
-      e.preventDefault();
-      const form = document.getElementById('notify-form');
-      const success = document.getElementById('notify-success');
-      const t = translations[currentLang];
-      
-      form.style.display = 'none';
-      success.innerText = t.successMsg;
-      success.classList.remove('hidden');
-    }
+    // Initial Render
+    renderLoaderLetters(translations.tr.loaderText);
 
     // Sparkles Particles Canvas
     (function initSparkles() {
