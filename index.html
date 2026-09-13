@@ -143,26 +143,21 @@
   </header>
 
   <!-- Main Content (Sade & Şık Portal Tanıtımı) -->
-  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-4 my-auto">
+  <main class="relative z-20 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center px-6 py-2 my-auto">
     
     <!-- Status Badge -->
-    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-5">
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-lg shadow-[#007A87]/15 mb-4">
       <span class="h-2 w-2 rounded-full bg-[#FF6500] animate-ping"></span>
       <span id="txt-badge">PORTAL MODÜLLERİ YÜKLENİYOR</span>
     </div>
 
     <!-- Title -->
-    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-4 text-white max-w-2xl">
+    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl mb-3 text-white max-w-2xl">
       ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>
     </h1>
 
-    <!-- Description -->
-    <p id="txt-desc" class="max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed mb-6">
-      Arşiv Yönetimi, Veri Yönetimi ve Güvenlik Yönetimi altyapılarını içeren yeni ANV Trust Dijital Portalı hazırlık aşamasında. Çok yakında hizmetinizde.
-    </p>
-
-    <!-- AI Ring Loader Animation (E-posta Yerine Eklendi) -->
-    <div class="my-6 relative flex items-center justify-center select-none" style="width: 170px; height: 170px;">
+    <!-- AI Ring Loader Animation (Ferah Ve Geniş Alan) -->
+    <div class="my-8 sm:my-10 relative flex items-center justify-center select-none" style="width: 190px; height: 190px;">
       <!-- Animated Text inside Loader Ring -->
       <div id="loader-letters" class="flex items-center justify-center space-x-[2px] z-10">
         <!-- Rendered via JS -->
@@ -171,25 +166,39 @@
       <div class="absolute inset-0 rounded-full animate-loaderCircle"></div>
     </div>
 
-    <!-- Portal Core Modules (Sade 3 Sistem Kartı) -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-4">
-      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md text-left transition-all hover:border-[#007A87]/60 hover:-translate-y-1">
-        <span class="text-2xl mb-2">📁</span>
-        <span id="f1-title" class="font-heading font-bold text-white text-base mb-1">Arşiv Yönetimi</span>
-        <span id="f1-desc" class="text-xs text-slate-400 leading-normal">Dijital doküman ve arşivleme altyapısı.</span>
+    <!-- Portal Core Modules (Sadeleştirilmiş Vektör İkonlu Modüller) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-8">
+      
+      <!-- Arşiv Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+          </svg>
+        </div>
+        <span id="f1-title" class="font-heading font-bold text-white text-sm sm:text-base">Arşiv Yönetimi</span>
       </div>
 
-      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md text-left transition-all hover:border-[#FF6500]/60 hover:-translate-y-1">
-        <span class="text-2xl mb-2">📊</span>
-        <span id="f2-title" class="font-heading font-bold text-white text-base mb-1">Veri Yönetimi</span>
-        <span id="f2-desc" class="text-xs text-slate-400 leading-normal">Merkezi veri ve raporlama konsolu.</span>
+      <!-- Veri Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#FF6500]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF6500]/15 text-[#FF6500] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <span id="f2-title" class="font-heading font-bold text-white text-sm sm:text-base">Veri Yönetimi</span>
       </div>
 
-      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md text-left transition-all hover:border-[#007A87]/60 hover:-translate-y-1">
-        <span class="text-2xl mb-2">🛡️</span>
-        <span id="f3-title" class="font-heading font-bold text-white text-base mb-1">Güvenlik Yönetimi</span>
-        <span id="f3-desc" class="text-xs text-slate-400 leading-normal">Gelişmiş yetkilendirme ve erişim denetimi.</span>
+      <!-- Güvenlik Yönetimi -->
+      <div class="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 backdrop-blur-md transition-all hover:border-[#007A87]/70 hover:-translate-y-1 shadow-lg">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#007A87]/15 text-[#00a3b4] flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <span id="f3-title" class="font-heading font-bold text-white text-sm sm:text-base">Güvenlik Yönetimi</span>
       </div>
+
     </div>
 
   </main>
@@ -212,28 +221,20 @@
         pageTitle: "ANV Trust Portal – Yakında Hizmetinizde",
         badge: "PORTAL MODÜLLERİ YÜKLENİYOR",
         title: 'ANV Trust Dijital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>',
-        desc: "Arşiv Yönetimi, Veri Yönetimi ve Güvenlik Yönetimi altyapılarını içeren yeni ANV Trust Dijital Portalı hazırlık aşamasında. Çok yakında hizmetinizde.",
         loaderText: "YÜKLENİYOR",
         f1Title: "Arşiv Yönetimi",
-        f1Desc: "Dijital doküman ve arşivleme altyapısı.",
         f2Title: "Veri Yönetimi",
-        f2Desc: "Merkezi veri ve raporlama konsolu.",
         f3Title: "Güvenlik Yönetimi",
-        f3Desc: "Gelişmiş yetkilendirme ve erişim denetimi.",
         footer: "© 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır."
       },
       en: {
         pageTitle: "ANV Trust Portal – Coming Soon",
         badge: "PORTAL MODULES LOADING",
         title: 'ANV Trust Digital Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Coming Soon</span>',
-        desc: "ANV Trust Digital Portal featuring Archive Management, Data Management, and Security Administration is under construction. Coming soon.",
         loaderText: "LOADING...",
         f1Title: "Archive Management",
-        f1Desc: "Digital document and archiving infrastructure.",
         f2Title: "Data Management",
-        f2Desc: "Centralized data and reporting console.",
         f3Title: "Security Administration",
-        f3Desc: "Advanced access control and permissions.",
         footer: "© 2026 African National View Trust (ANV Trust). All rights reserved."
       }
     };
@@ -260,15 +261,11 @@
       document.getElementById('page-title').innerText = t.pageTitle;
       document.getElementById('txt-badge').innerText = t.badge;
       document.getElementById('txt-title').innerHTML = t.title;
-      document.getElementById('txt-desc').innerText = t.desc;
       renderLoaderLetters(t.loaderText);
 
       document.getElementById('f1-title').innerText = t.f1Title;
-      document.getElementById('f1-desc').innerText = t.f1Desc;
       document.getElementById('f2-title').innerText = t.f2Title;
-      document.getElementById('f2-desc').innerText = t.f2Desc;
       document.getElementById('f3-title').innerText = t.f3Title;
-      document.getElementById('f3-desc').innerText = t.f3Desc;
       document.getElementById('txt-footer').innerText = t.footer;
 
       const btnTr = document.getElementById('btn-tr');
