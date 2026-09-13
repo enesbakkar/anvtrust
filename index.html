@@ -1,17 +1,294 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANV Trust Portal – Yakında Hizmetinizde</title>
-    <meta name="description" content="African National View Trust (ANV Trust) Dijital Portalı Hazırlanıyor." />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#070d14] text-slate-100">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">ANV Trust Portal – Yakında Hizmetinizde</title>
+  <meta name="description" content="African National View Trust (ANV Trust) Dijital Portalı Hazırlanıyor.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            anvTeal: '#007A87',
+            anvOrange: '#FF6500',
+            anvDark: '#070d14'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 0.4; }
+    }
+    .orb-glow-1 {
+      animation: pulseGlow 10s ease-in-out infinite alternate;
+    }
+    .orb-glow-2 {
+      animation: pulseGlow 14s ease-in-out infinite alternate;
+      animation-delay: -5s;
+    }
+    .sparkle-canvas {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="bg-[#070d14] text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative font-sans">
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div class="orb-glow-1 absolute -top-40 -left-40 h-[550px] w-[550px] rounded-full bg-[#007A87]/25 blur-[140px]"></div>
+    <div class="orb-glow-2 absolute -bottom-40 -right-40 h-[550px] w-[550px] rounded-full bg-[#FF6500]/20 blur-[150px]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
+    <!-- Brand Logo -->
+    <a href="#" class="flex items-center gap-3.5 group">
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#007A87] to-[#FF6500] text-xl font-black text-white shadow-lg shadow-[#007A87]/30 transition-transform group-hover:scale-105">
+        ANV
+      </div>
+      <div class="flex flex-col">
+        <span class="font-extrabold tracking-tight text-white text-lg leading-tight font-heading">
+          AFRICAN NATIONAL VIEW
+        </span>
+        <span class="text-[11px] font-bold tracking-[0.2em] text-[#FF6500] uppercase">
+          TRUST PORTAL
+        </span>
+      </div>
+    </a>
+
+    <!-- TR / EN Language Switcher -->
+    <div class="flex items-center rounded-full border border-white/10 bg-slate-900/80 p-1 backdrop-blur-xl shadow-xl">
+      <button id="btn-tr" onclick="setLanguage('tr')" class="rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#007A87] to-[#00a3b4] text-white shadow-md">
+        TR
+      </button>
+      <button id="btn-en" onclick="setLanguage('en')" class="rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white">
+        EN
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <main class="relative z-20 mx-auto flex w-full max-w-4xl flex-col items-center justify-center text-center px-6 py-10 my-auto">
+    
+    <!-- Status Badge -->
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-[#007A87]/40 bg-slate-900/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00a3b4] backdrop-blur-md shadow-xl shadow-[#007A87]/15 mb-6">
+      <span class="h-2 w-2 rounded-full bg-[#FF6500] animate-ping"></span>
+      <span id="txt-badge">PORTAL MODÜLLERİ YÜKLENİYOR</span>
+    </div>
+
+    <!-- Main Title -->
+    <h1 id="txt-title" class="font-heading text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl md:text-6xl max-w-3xl mb-6 text-white">
+      Geleceğin İnsani & Akademik Portalı <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>
+    </h1>
+
+    <!-- Subtitle / Description -->
+    <p id="txt-desc" class="max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
+      African National View Trust (ANV Trust) dijital portalı hazırlanıyor. Burs başvuruları, akademisyen paneli ve insani yardım süreçleri çok yakında tek bir platformda birleşiyor.
+    </p>
+
+    <!-- Email Notification Form Card -->
+    <div class="w-full max-w-md bg-slate-900/70 border border-white/10 backdrop-blur-2xl p-2 rounded-2xl shadow-2xl mb-10 transition-all focus-within:border-[#FF6500]/50">
+      <form id="notify-form" onsubmit="handleNotify(event)" class="flex gap-2">
+        <input 
+          type="email" 
+          id="email-input"
+          required 
+          placeholder="E-posta adresinizi girin..." 
+          class="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder-slate-500 outline-none"
+        >
+        <button 
+          type="submit" 
+          id="btn-notify"
+          class="rounded-xl bg-gradient-to-r from-[#FF6500] to-[#ff8533] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#FF6500]/30 transition-all hover:brightness-110 active:scale-95 whitespace-nowrap"
+        >
+          Haberdar Et
+        </button>
+      </form>
+      <div id="notify-success" class="hidden p-3 text-sm font-semibold text-emerald-400 text-center"></div>
+    </div>
+
+    <!-- Feature Teaser Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md text-left transition-all hover:border-[#007A87]/50 hover:-translate-y-1">
+        <span class="text-2xl mb-2">🎓</span>
+        <span id="f1-title" class="font-heading font-bold text-white text-base mb-1">Burs & Eğitim Portalı</span>
+        <span id="f1-desc" class="text-xs text-slate-400 leading-normal">Online burs başvurusu ve takip süreçleri.</span>
+      </div>
+
+      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md text-left transition-all hover:border-[#FF6500]/50 hover:-translate-y-1">
+        <span class="text-2xl mb-2">🌍</span>
+        <span id="f2-title" class="font-heading font-bold text-white text-base mb-1">İnsani Yardım Portalı</span>
+        <span id="f2-desc" class="text-xs text-slate-400 leading-normal">Şeffaf ve hızlı yardım koordinasyon paneli.</span>
+      </div>
+
+      <div class="flex flex-col items-start p-5 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-md text-left transition-all hover:border-[#007A87]/50 hover:-translate-y-1">
+        <span class="text-2xl mb-2">📊</span>
+        <span id="f3-title" class="font-heading font-bold text-white text-base mb-1">Akademik Panel</span>
+        <span id="f3-desc" class="text-xs text-slate-400 leading-normal">Uluslararası danışmanlık ve ağ yönetimi.</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Animated Sparkles Horizon Bottom Canvas -->
+  <div class="relative -mt-10 h-48 w-full overflow-hidden [mask-image:radial-gradient(50%_50%,black,transparent)] pointer-events-none">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(255,101,0,0.25),transparent_70%)] opacity-70"></div>
+    <canvas id="sparkle-canvas" class="sparkle-canvas"></canvas>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-20 text-center text-xs text-slate-500 py-6 border-t border-white/5">
+    <span id="txt-footer">&copy; 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır.</span>
+  </footer>
+
+  <!-- Script for Language Switch & Sparkles Canvas -->
+  <script>
+    const translations = {
+      tr: {
+        pageTitle: "ANV Trust Portal – Yakında Hizmetinizde",
+        badge: "PORTAL MODÜLLERİ YÜKLENİYOR",
+        title: 'Geleceğin İnsani & Akademik Portalı <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Yakında Hizmetinizde</span>',
+        desc: "African National View Trust (ANV Trust) dijital portalı hazırlanıyor. Burs başvuruları, akademisyen paneli ve insani yardım süreçleri çok yakında tek bir platformda birleşiyor.",
+        inputPlaceholder: "E-posta adresinizi girin...",
+        btnNotify: "Haberdar Et",
+        successMsg: "✨ Teşekkürler! Portal açıldığında size bildirim göndereceğiz.",
+        f1Title: "Burs & Eğitim Portalı",
+        f1Desc: "Online burs başvurusu ve takip süreçleri.",
+        f2Title: "İnsani Yardım Portalı",
+        f2Desc: "Şeffaf ve hızlı yardım koordinasyon paneli.",
+        f3Title: "Akademik Panel",
+        f3Desc: "Uluslararası danışmanlık ve ağ yönetimi.",
+        footer: "© 2026 African National View Trust (ANV Trust). Tüm hakları saklıdır."
+      },
+      en: {
+        pageTitle: "ANV Trust Portal – Coming Soon",
+        badge: "PORTAL MODULES LOADING",
+        title: 'The Future of Academic & Humanitarian Portal <br><span class="bg-gradient-to-r from-[#007A87] via-[#00a3b4] to-[#FF6500] bg-clip-text text-transparent">Coming Soon</span>',
+        desc: "African National View Trust (ANV Trust) digital portal is under construction. Scholarship applications, academic panel, and aid coordination will soon be unified in one platform.",
+        inputPlaceholder: "Enter your email address...",
+        btnNotify: "Notify Me",
+        successMsg: "✨ Thank you! We will notify you as soon as the portal goes live.",
+        f1Title: "Scholarship & Education",
+        f1Desc: "Online applications & student tracking portal.",
+        f2Title: "Humanitarian Aid Portal",
+        f2Desc: "Transparent and fast aid management.",
+        f3Title: "Academic Panel",
+        f3Desc: "International consulting and networking.",
+        footer: "© 2026 African National View Trust (ANV Trust). All rights reserved."
+      }
+    };
+
+    let currentLang = 'tr';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      document.getElementById('page-title').innerText = t.pageTitle;
+      document.getElementById('txt-badge').innerText = t.badge;
+      document.getElementById('txt-title').innerHTML = t.title;
+      document.getElementById('txt-desc').innerText = t.desc;
+      document.getElementById('email-input').placeholder = t.inputPlaceholder;
+      document.getElementById('btn-notify').innerText = t.btnNotify;
+      document.getElementById('f1-title').innerText = t.f1Title;
+      document.getElementById('f1-desc').innerText = t.f1Desc;
+      document.getElementById('f2-title').innerText = t.f2Title;
+      document.getElementById('f2-desc').innerText = t.f2Desc;
+      document.getElementById('f3-title').innerText = t.f3Title;
+      document.getElementById('f3-desc').innerText = t.f3Desc;
+      document.getElementById('txt-footer').innerText = t.footer;
+
+      const btnTr = document.getElementById('btn-tr');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'tr') {
+        btnTr.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#007A87] to-[#00a3b4] text-white shadow-md";
+        btnEn.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white";
+      } else {
+        btnEn.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all bg-gradient-to-r from-[#FF6500] to-[#ff8533] text-white shadow-md";
+        btnTr.className = "rounded-full px-4 py-1.5 text-xs font-bold transition-all text-slate-400 hover:text-white";
+      }
+    }
+
+    function handleNotify(e) {
+      e.preventDefault();
+      const form = document.getElementById('notify-form');
+      const success = document.getElementById('notify-success');
+      const t = translations[currentLang];
+      
+      form.style.display = 'none';
+      success.innerText = t.successMsg;
+      success.classList.remove('hidden');
+    }
+
+    // Sparkles Canvas Particles
+    (function initSparkles() {
+      const canvas = document.getElementById('sparkle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.parentElement.offsetWidth || 800;
+      let height = canvas.height = canvas.parentElement.offsetHeight || 200;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth || 800;
+        height = canvas.height = canvas.parentElement.offsetHeight || 200;
+      });
+
+      const count = 45;
+      const particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 2 + 0.5,
+        alpha: Math.random(),
+        speed: Math.random() * 0.015 + 0.005,
+        dir: Math.random() > 0.5 ? 1 : -1,
+        color: Math.random() > 0.4 ? '#007A87' : '#FF6500'
+      }));
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.alpha += p.speed * p.dir;
+          if (p.alpha >= 1) { p.alpha = 1; p.dir = -1; }
+          else if (p.alpha <= 0.1) { p.alpha = 0.1; p.dir = 1; }
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+          ctx.restore();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+</body>
 </html>
